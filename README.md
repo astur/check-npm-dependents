@@ -1,6 +1,6 @@
 # check-npm-dependents
 
-check-npm-dependents description here
+Checks how many dependents has npm package.
 
 [![Build Status][travis-image]][travis-url]
 [![NPM version][npm-image]][npm-url]
@@ -14,7 +14,9 @@ npm i check-npm-dependents
 ## Usage
 
 ```js
-const check-npm-dependents = require('check-npm-dependents');
+const check = require('check-npm-dependents');
+check('lodash').then(console.log) // for ex. 68195
+check('_ABC').then(console.log) // -1 (no such package)
 ```
 
 ## License
