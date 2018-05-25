@@ -12,3 +12,7 @@ test('errors', async t => {
     const e = await t.throws(m('_ABC'));
     t.is(e.message, 'Unable to determine dependents for package: "_ABC"');
 });
+
+test('parse', t => {
+    t.is(m.parse('<a href="?activeTab=dependents">1 2test <p>3</p></a>'), 123);
+});
