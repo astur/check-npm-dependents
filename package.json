@@ -1,6 +1,6 @@
 {
   "name": "check-npm-dependents",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Checks how many dependents has npm package",
   "main": "index.js",
   "author": "astur <astur@yandex.ru> (http://kozlov.am/)",
