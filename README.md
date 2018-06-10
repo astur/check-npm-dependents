@@ -16,7 +16,8 @@ npm i check-npm-dependents
 ```js
 const check = require('check-npm-dependents');
 check('lodash').then(console.log) // for ex. 68195
-check('_ABC').then(console.log) // -1 (no such package)
+check('_ABC').then(console.log) // Error: Unable to determine dependents for package: "_ABC"
+check('').then(console.log) // Error: Bad name : ""
 ```
 
 ## License
