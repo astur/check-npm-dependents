@@ -10,10 +10,9 @@ const parse = body => {
 
 module.exports = async name => {
     const response = await scra(`https://www.npmjs.com/package/${name}`);
-    const err = () => new Error(`Unable to determine dependents for package: "${name}"`);
-    if(response.statusCode !== 200) throw err();
+    if(![200, 404].includes(response.statusCode)) throw new Error(`Bad name : "${name}"`);
     const count = parse(response.body);
-    if(count === -1) throw err();
+    if(count === -1) throw new Error(`Unable to determine dependents for package: "${name}"`);
     return count;
 };
 
