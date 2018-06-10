@@ -9,8 +9,10 @@ test('main', async t => {
 });
 
 test('errors', async t => {
-    const e = await t.throws(m('_ABC'));
-    t.is(e.message, 'Unable to determine dependents for package: "_ABC"');
+    const e1 = await t.throws(m('_ABC'));
+    t.is(e1.message, 'Unable to determine dependents for package: "_ABC"');
+    const e2 = await t.throws(m(''));
+    t.is(e2.message, 'Bad name : ""');
 });
 
 test('parse', t => {
