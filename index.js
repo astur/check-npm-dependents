@@ -5,7 +5,7 @@ const parse = body => {
     const $ = load(body);
     const depLink = $('a[href="?activeTab=dependents"]');
     if(depLink.length !== 1) return -1;
-    return +depLink.text().replace(/[^0-9]/g, '');
+    return +depLink.text().replace(/\D/g, '');
 };
 
 module.exports = async name => {
