@@ -1,19 +1,17 @@
-const scra = require('scra');
+const got = require('got');
 const load = require('cheerio').load;
 
 const parse = body => {
     const $ = load(body);
     const depLink = $('a[href="?activeTab=dependents"]');
-    if(depLink.length !== 1) return -1;
     return +depLink.text().replace(/\D/g, '');
 };
 
 module.exports = async name => {
-    const response = await scra(`https://www.npmjs.com/package/${name}`);
-    if(![200, 404].includes(response.statusCode)) throw new Error(`Bad name : "${name}"`);
-    const count = parse(response.body);
-    if(count === -1) throw new Error(`Unable to determine dependents for package: "${name}"`);
-    return count;
+    const response = await got(`https://www.npmjs.com/package/${name}`).catch(_ => {
+        throw new Error(`Bad name : "${name}"`);
+    });
+    return parse(response.body);
 };
 
 module.exports.parse = parse;
